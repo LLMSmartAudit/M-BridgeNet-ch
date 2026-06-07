@@ -1,0 +1,9 @@
+M-BridgeNet — research reproduction package.
+
+Code: released for non-commercial academic research and reproduction.
+Dataset (CPHot): contains public social-media posts; provided for
+non-commercial research use only. Redistribution of raw post content may be
+subject to the originating platforms' terms of service.
+
+TODO: choose and insert a formal license (e.g., MIT for code, CC BY-NC 4.0 for
+data) before public release.

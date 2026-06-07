@@ -1,0 +1,50 @@
+# ── Stage 1 ──────────────────────────────────────────
+stage1:
+  embedding_model: "BAAI/bge-large-zh-v1.5"
+  tau_coarse: 0.50          # cosine similarity lower bound for FAISS retrieval
+  max_time_gap_hours: 72    # used when adaptive_time_gap is false
+  adaptive_time_gap: true   # compute gap from 2x IQR of post timestamps
+  top_k_candidates: 10000   # per-event top-K pairs
+  faiss_ef_search: 64
+  faiss_m: 32               # HNSW construction parameter
+
+# ── Stage 2 ──────────────────────────────────────────
+stage2:
+  tau_fine: 0.60            # fine filter threshold (s1 lower bound)
+  tau_high: 0.50
+  tau_low: 0.35
+  phase_windows:            # W(φ) in hours — recalibrated v18 (2026-05-16)
+    # v15 original (6/24/48/72): too short for slow-spreading events (xuzhou, tiktok)
+    # v17 attempt (48/72/120/240): emergence=48h too long — floods suzhou BRIDGE zone
+    #   with Bili×Zhihu FPs, dropping suzhou AP@5 1.000→0.800
+    # v18 surgical fix: keep emergence SHORT (fast-censored Weibo posts in early hours)
+    #   but extend diffusion/peak/decline for slow-spreading content (days, not hours)
+    emergence: 12
+    diffusion: 72
+    peak: 120
+    decline: 240
+  lifecycle_thresholds:     # fraction of v*
+    emergence_start: 0.10
+    diffusion_start: 0.50
+    peak_start: 0.80
+  smoothing_window: 6       # H for sliding-average (hours)
+  mlp_hidden: 64
+  mlp_lr: 1.0e-3
+  mlp_epochs: 50
+  mlp_batch_size: 256
+
+# ── Stage 3 ──────────────────────────────────────────
+stage3:
+  llm_model: "gpt-5.4-nano"
+  llm_temperature: 1
+  llm_max_tokens: 1024
+  min_confidence: 0.55      # Judge must output confidence >= this
+
+# ── Final fusion ─────────────────────────────────────
+fusion:
+  lambda_weight: 0.5        # S_final = lambda*S + (1-lambda)*confidence
+
+# ── Evaluation ───────────────────────────────────────
+evaluation:
+  k_values: [5, 10, 20, 50]
+  n_folds: 5
