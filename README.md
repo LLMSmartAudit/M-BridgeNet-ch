@@ -6,7 +6,8 @@ posts that carry a narrative from one social platform to another — evaluated o
 
 - 📦 **Code (this repo):** the framework, experiment scripts, and lightweight result artifacts.
 - 🤗 **Data + model weights (Hugging Face):** the CPHot dataset and trained checkpoints
-  live on the Hub (too large for GitHub) — see [§2](#2-get-the-data--checkpoints).
+  live on the Hub: [`weifar/M-BridgeNet-ch`](https://huggingface.co/datasets/weifar/M-BridgeNet-ch)
+  — see [§2](#2-get-the-data--checkpoints).
 
 > **Headline result (v25):** AP@5 = **82.29%** on the 67-event `test_real` split —
 > statistically indistinguishable from a fine-tuned CrossEncoder (83.01%, p=0.41) at
@@ -46,9 +47,9 @@ the layout the scripts expect (run from the repo root):
 
 ```bash
 pip install huggingface_hub
-make data HF_REPO=your-org/M-BridgeNet
+make data HF_REPO=weifar/M-BridgeNet-ch
 # equivalently:
-python scripts/download_from_hf.py --repo-id your-org/M-BridgeNet
+python scripts/download_from_hf.py --repo-id weifar/M-BridgeNet-ch
 ```
 This populates `data/cphot/{raw,processed}/…` and `checkpoints/`.
 
