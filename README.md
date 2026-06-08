@@ -1,5 +1,13 @@
 # M-BridgeNet: Cross-Platform Bridge-Node Detection on Chinese Social Media
 
+![Banner](https://i.ibb.co/sJ7RhGG/image-41.png)
+
+## 🎯 Core Idea
+
+<div align="center">
+  <img src="./docs/frameword.png" alt="M-BridgeNet Framework" height="400">
+</div>
+
 Code for **M-BridgeNet**, a three-stage framework that detects *bridge posts* —
 posts that carry a narrative from one social platform to another — evaluated on the
 **CPHot** benchmark (110 events across Weibo, Douyin, Bilibili, Zhihu).
