@@ -5,7 +5,7 @@
 ## 🎯 Core Idea
 
 <div align="center">
-  <img src="./docs/frameword.png" alt="M-BridgeNet Framework" height="400">
+  <img src="./docs/framework.png" alt="M-BridgeNet Framework" height="400">
 </div>
 
 Code for **M-BridgeNet**, a three-stage framework that detects *bridge posts* —
