@@ -49,7 +49,7 @@ class MABDDebater:
     def __init__(
         self,
         client: Any,
-        model: str = "gpt-5.4-nano",
+        model: str = "gpt-5.5",
         temperature: float = 0.0,
         max_tokens: int = 1024,
         call_interval: float = 1.0,  # seconds between API calls
